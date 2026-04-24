@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dtp3o7niklaab"]
+
+[ext_resource type="Texture2D" uid="uid://buknvsvmrdy6i" path="res://assets/pieces.png" id="1_33bfb"]
+
+[node name="Pawn" type="Node2D" unique_id=665441457]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=794708852]
+texture = ExtResource("1_33bfb")
+region_enabled = true
+region_rect = Rect2(83, 17, 10, 14)

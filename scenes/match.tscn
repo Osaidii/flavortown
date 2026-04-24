@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bihcu7hv2d2un"]
+
+[ext_resource type="Texture2D" uid="uid://b44fh0p2gu2q1" path="res://assets/chess board.png" id="1_80q71"]
+[ext_resource type="Script" uid="uid://dawwwuvnru0kn" path="res://scripts/match.gd" id="1_t0cgm"]
+[ext_resource type="PackedScene" uid="uid://pyx0jk6vqvl3" path="res://scenes/black pieces/black_queen.tscn" id="3_5rc6j"]
+
+[node name="Match" type="Node2D" unique_id=785528712]
+script = ExtResource("1_t0cgm")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1164577017]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+
+[node name="Board" type="Sprite2D" parent="." unique_id=108041074]
+position = Vector2(640, 360)
+scale = Vector2(4.05, 4.05)
+texture = ExtResource("1_80q71")
+
+[node name="Control" type="Control" parent="." unique_id=532585056]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pawn" parent="Control" unique_id=665441457 instance=ExtResource("3_5rc6j")]
+position = Vector2(383, 107)
+scale = Vector2(4.175, 4.175)
