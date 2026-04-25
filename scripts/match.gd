@@ -6,12 +6,12 @@ extends Control
 
 const INDICATOR_POSSIBLE = preload("uid://jwcesd0w5er")
 const INDICATOR_SELECTED = preload("uid://6cjjdud1fvr")
-const BLACK_BISHOP = preload("uid://cbbpyg0o6am7f")
-const BLACK_KING = preload("uid://csxjs22db2fwk")
-const BLACK_KNIGHT = preload("uid://78x7unrttfjs")
-const BLACK_PAWN = preload("uid://dtp3o7niklaab")
-const BLACK_QUEEN = preload("uid://pyx0jk6vqvl3")
-const BLACK_ROOK = preload("uid://wu7hjhsnwt6q")
+const BISHOPB = preload("uid://cbbpyg0o6am7f")
+const KINGB = preload("uid://csxjs22db2fwk")
+const KNIGHTB = preload("uid://78x7unrttfjs")
+const PAWNB = preload("uid://dtp3o7niklaab")
+const QUEENB = preload("uid://pyx0jk6vqvl3")
+const ROOKB = preload("uid://wu7hjhsnwt6q")
 const BISHOP = preload("uid://dn4wx5exxkd6j")
 const KING = preload("uid://b1yxhruleaevk")
 const KNIGHT = preload("uid://dopoqmcy33btu")
@@ -20,105 +20,97 @@ const QUEEN = preload("uid://8awts0j264pv")
 const ROOK = preload("uid://ddt470jlxupw3")
 
 var selected: int
+var piece_selected: String
 var indicator_sel_spawned: bool
 
-var piece_to_instance := {
-	"bishop" : BISHOP,
-	"rook" : ROOK,
-	"king" : KING,
-	"knight" : KNIGHT,
-	"pawn" : PAWN,
-	"queen" : QUEEN,
-	"bishopb" : BLACK_BISHOP,
-	"rookb" : BLACK_ROOK,
-	"kingb" : BLACK_KING,
-	"knightb" : BLACK_KNIGHT,
-	"pawnb" : BLACK_PAWN,
-	"queenb" : BLACK_QUEEN,
+var all_pieces = {
+	1 : ROOKB,
+	2 : KNIGHTB,
+	3 : BISHOPB,
+	4 : QUEENB,
+	5 : KINGB,
+	6 : BISHOPB,
+	7 : KNIGHTB,
+	8 : ROOKB,
+	9 : PAWNB,
+	10 : PAWNB,
+	11 : PAWNB,
+	12 : PAWNB,
+	13 : PAWNB,
+	14 : PAWNB,
+	15 : PAWNB,
+	16 : PAWNB,
+	17 : PAWN,
+	18 : PAWN,
+	19 : PAWN,
+	20 : PAWN,
+	21 : PAWN,
+	22 : PAWN,
+	23 : PAWN,
+	24 : PAWN,
+	25 : ROOK,
+	26 : KNIGHT,
+	27 : BISHOP,
+	28 : QUEEN,
+	29 : KING,
+	30 : BISHOP,
+	31 : KNIGHT,
+	32 : ROOK,
+}
+
+var positions = {
+	1 : 1,
+	2 : 2,
+	3 : 3,
+	4 : 4,
+	5 : 5,
+	6 : 6,
+	7 : 7,
+	8 : 8,
+	9 : 9,
+	10 : 10,
+	11 : 11,
+	12 : 12,
+	13 : 13,
+	14 : 14,
+	15 : 15,
+	16 : 16,
+	20 : 52,
+	21 : 53,
+	22 : 54,
+	23 : 55,
+	24 : 56,
+	25 : 57,
+	26 : 58,
+	27 : 59,
+	28 : 60,
+	29 : 61,
+	30 : 62,
+	31 : 63,
+	32 : 64
 }
 
 func _ready() -> void:
 	spawn_pieces()
+	await get_tree().create_timer(5).timeout
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("l_click"):
-		var mouse_pos := get_global_mouse_position()
+func spawn_pieces() -> void:
+	add_piece(1, 1)
+
+func move_piece(piece_number, current_postiton, new_position) -> void:
+	pass
+
+func add_piece(number, new_position) -> void:
+	var instance = all_pieces[number].instantiate()
+	var square = board_places.get_child(new_position - 1)
+	square.add_child(instance)
 
 func _process(delta: float) -> void:
-	# Indicator Logic
+	# Indicator and Selecting Logic
 	if selected > 0 and !indicator_sel_spawned:
 		if board_places.get_child(selected - 1).get_children() != []:
 			if board_places.get_child(selected - 1).get_child(0).is_in_group("white"):
 				highlight_selected_piece()
-
-func move_to(piece: Node2D, place_num: int):
-	var square := board_places.get_child(place_num - 1)
-	var piece_type: String
-	match piece.get_groups():
-		["bishop", "pieces"]:
-			piece_type = "bishop"
-		["rook", "pieces"]:
-			piece_type = "rook"
-		["king", "pieces"]:
-			piece_type = "king"
-		["knight", "pieces"]:
-			piece_type = "knight"
-		["pawn", "pieces"]:
-			piece_type = "pawn"
-		["queen", "pieces"]:
-			piece_type = "queen"
-		["bishopb", "pieces"]:
-			piece_type = "bishopb"
-		["rookb", "pieces"]:
-			piece_type = "rookb"
-		["kingb", "pieces"]:
-			piece_type = "kingb"
-		["knightb", "pieces"]:
-			piece_type = "knightb"
-		["pawnb", "pieces"] :
-			piece_type = "pawnb"
-			print("here")
-		["queenb", "pieces"]:
-			piece_type = "queenb"
-	var instance  = piece_to_instance[piece_type].instantiate()
-	square.add_child(instance)
-	piece.queue_free()
-
-func spawn_pieces() -> void:
-	await get_tree().create_timer(0.1).timeout
-	add_piece("rookb", 1)
-	add_piece("rook", 64)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("knightb", 2)
-	add_piece("knight", 63)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("bishopb", 3)
-	add_piece("bishop", 62)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("queenb", 4)
-	add_piece("king", 61)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("kingb", 5)
-	add_piece("queen", 60)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("bishopb", 6)
-	add_piece("bishop", 59)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("knightb", 7)
-	add_piece("knight", 58)
-	await get_tree().create_timer(0.1).timeout
-	add_piece("rookb", 8)
-	add_piece("rook", 57)
-	await get_tree().create_timer(0.1).timeout
-	for i in range(8):
-		add_piece("pawnb", 9 + i)
-		add_piece("pawn", 56 - i)
-		await get_tree().create_timer(0.1).timeout
-
-func add_piece(piece, place_num) -> void:
-	var square := board_places.get_child(place_num - 1)
-	var instance  = piece_to_instance[piece].instantiate()
-	square.add_child(instance)
 
 func highlight_selected_piece() -> void:
 	for i in get_tree().get_nodes_in_group("indicators"):

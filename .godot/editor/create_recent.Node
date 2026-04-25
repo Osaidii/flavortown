@@ -1,0 +1,12 @@
+AnimatedSprite2D
+Control
+CollisionShape2D
+Area2D
+Node2D
+ColorRect
+StaticBody2D
+CenterContainer
+GridContainer
+Container
+Sprite2D
+Node

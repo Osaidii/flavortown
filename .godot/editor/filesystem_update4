@@ -1,0 +1,18 @@
+res://scripts/resizing.gd
+res://scenes/match.tscn
+res://scenes/black pieces/black_bishop.tscn
+res://scenes/black pieces/black_king.tscn
+res://scenes/black pieces/black_knight.tscn
+res://scenes/black pieces/black_queen.tscn
+res://scenes/black pieces/black_rook.tscn
+res://scenes/white pieces/bishop.tscn
+res://scenes/white pieces/king.tscn
+res://scenes/white pieces/knight.tscn
+res://scenes/white pieces/queen.tscn
+res://scenes/white pieces/rook.tscn
+res://scripts/match.gd
+res://scenes/white pieces/pawn.tscn
+res://scenes/black pieces/black_pawn.tscn
+res://scripts/piece.gd
+res://scenes/indicator_selected.tscn
+res://scenes/indicator_possible.tscn
