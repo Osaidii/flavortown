@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://buknvsvmrdy6i" path="res://assets/pieces.png" id="1_fqlt4"]
 
-[node name="Pawn" type="Node2D" unique_id=665441457]
+[node name="Bishop" type="Node2D" unique_id=665441457 groups=["bishop", "pieces", "white"]]
+scale = Vector2(4, 4)
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=794708852]
 texture = ExtResource("1_fqlt4")

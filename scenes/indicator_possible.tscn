@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://jwcesd0w5er"]
+
+[ext_resource type="Texture2D" uid="uid://ohjefncqcev7" path="res://assets/Selected Indicator.png" id="1_f0r72"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rne0q"]
+atlas = ExtResource("1_f0r72")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x3wf"]
+atlas = ExtResource("1_f0r72")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3npyj"]
+atlas = ExtResource("1_f0r72")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43ept"]
+atlas = ExtResource("1_f0r72")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjcpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rne0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x3wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3npyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43ept")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Indicator" type="AnimatedSprite2D" unique_id=827815653]
+modulate = Color(0.50928617, 0.50928617, 0.50928617, 1)
+scale = Vector2(2.8, 2.8)
+sprite_frames = SubResource("SpriteFrames_tjcpy")
+autoplay = "default"
+frame_progress = 0.6451581

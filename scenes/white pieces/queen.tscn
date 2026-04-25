@@ -2,9 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://buknvsvmrdy6i" path="res://assets/pieces.png" id="1_h447w"]
 
-[node name="Pawn" type="Node2D" unique_id=665441457]
+[node name="Queen" type="Node2D" unique_id=665441457 groups=["pieces", "queen", "white"]]
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=794708852]
+scale = Vector2(4, 4)
 texture = ExtResource("1_h447w")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
