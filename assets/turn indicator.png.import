@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ohjefncqcev7"
-path="res://.godot/imported/selected indicator.png-70fb4e7997ed79d9d50a60359fbed4da.ctex"
+uid="uid://bwmqddp4heyaa"
+path="res://.godot/imported/turn indicator.png-79fd1073fe544ec162bfbac01ad4ae54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/selected indicator.png"
-dest_files=["res://.godot/imported/selected indicator.png-70fb4e7997ed79d9d50a60359fbed4da.ctex"]
+source_file="res://assets/turn indicator.png"
+dest_files=["res://.godot/imported/turn indicator.png-79fd1073fe544ec162bfbac01ad4ae54.ctex"]
 
 [params]
 

@@ -16,3 +16,4 @@ res://scenes/black pieces/black_pawn.tscn
 res://scripts/piece.gd
 res://scenes/indicator_selected.tscn
 res://scenes/indicator_possible.tscn
+res://scripts/turn_indicator.gd

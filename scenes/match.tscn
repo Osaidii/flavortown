@@ -3,9 +3,49 @@
 [ext_resource type="Texture2D" uid="uid://b44fh0p2gu2q1" path="res://assets/chess board.png" id="1_80q71"]
 [ext_resource type="Script" uid="uid://dawwwuvnru0kn" path="res://scripts/match.gd" id="1_t0cgm"]
 [ext_resource type="Script" uid="uid://mv4rmph3dpud" path="res://scripts/piece.gd" id="3_5rc6j"]
+[ext_resource type="Script" uid="uid://c772bydh0ydmf" path="res://scripts/turn_indicator.gd" id="4_dtxuj"]
+[ext_resource type="Texture2D" uid="uid://bwmqddp4heyaa" path="res://assets/turn indicator.png" id="5_mv342"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rc6j"]
 size = Vector2(64, 63)
+
+[sub_resource type="Animation" id="Animation_6dstc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_et4mf"]
+resource_name = "blip"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.8235294), Color(1, 1, 1, 0.39607844)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4bnf7"]
+_data = {
+&"RESET": SubResource("Animation_6dstc"),
+&"blip": SubResource("Animation_et4mf")
+}
 
 [node name="Match" type="Control" unique_id=1810451135]
 layout_mode = 3
@@ -1576,6 +1616,20 @@ position = Vector2(713, 363)
 z_index = 6
 position = Vector2(36, 36)
 shape = SubResource("RectangleShape2D_5rc6j")
+
+[node name="Turn Indicator" type="Control" parent="." unique_id=1775043573]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_dtxuj")
+
+[node name="Sprite" type="Sprite2D" parent="Turn Indicator" unique_id=833360627]
+scale = Vector2(2.91, 2.91)
+texture = ExtResource("5_mv342")
+
+[node name="Animation" type="AnimationPlayer" parent="Turn Indicator" unique_id=2011802719]
+libraries/ = SubResource("AnimationLibrary_4bnf7")
+autoplay = &"blip"
 
 [connection signal="input_event" from="Board Detection/1" to="." method="_on_pressed_1"]
 [connection signal="input_event" from="Board Detection/2" to="." method="_on_pressed_2"]
